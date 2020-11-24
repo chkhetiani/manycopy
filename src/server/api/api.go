@@ -3,13 +3,20 @@ package api
 import (
 	"fmt"
 	"manycopy/src/server"
+	"manycopy/src/server/api/paste-api"
 	"net/http"
 )
 
+var s = server.Server {Name: "api" }
+
 func init() {
-	ser := server.Server {Name: "api" }
-	ser.AddHandlerFunc("/api/", func(writer http.ResponseWriter, request *http.Request) {
+
+	for key, val := range pasteapi.Handlers {
+		s.AddHandlerFunc(key, val)
+	}
+	
+	s.AddHandlerFunc("/api/", func(writer http.ResponseWriter, request *http.Request) {
 		fmt.Fprintf(writer, "hello")
 	})
-	ser.Init()
+	s.Init()
 }

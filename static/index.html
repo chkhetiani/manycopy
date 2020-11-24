@@ -1,1 +1,48 @@
-<h1>hello</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body style="margin: 0px;">
+    <include src="partial/header.html"></include>
+
+    <div class="container flex-col">
+
+        <h2>make-copy</h2>
+        <div id="inputs" style="width: 100%">
+            <input type="text">
+        </div>
+        <div>
+            <button class="btn" onclick="addInp()" style="background: #0366D6;color:white;">+text</button>
+            <button class="btn" onclick="addText()" style="background: #0366D6;color:white;">+area</button>
+            <button class="btn" style="background: #2EA44F;color:white;">+create</button>
+        </div>
+
+    </div>
+
+    <script src="scripts/loader.js"></script>
+
+    <script>
+
+
+
+        function addInp() {
+            const inputs = document.querySelector('#inputs');
+            console.log(123);
+            inputs.appendChild(document.createElement('input'));
+        }
+
+        function addText() {
+            const inputs = document.querySelector('#inputs');
+            console.log(123);
+            inputs.appendChild(document.createElement('textarea'));
+        }
+    </script>
+</body>
+</html>
