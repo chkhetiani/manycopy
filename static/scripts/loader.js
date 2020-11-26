@@ -15,7 +15,7 @@ const CONTENT_URL = "http://localhost:1061";
         });
     }
 
-    function load_content() {
+    function load_cdn() {
         const images = document.getElementsByTagName('img');
         [].forEach.call(images, i => {
             let filePath = i.getAttribute('src');
@@ -23,8 +23,18 @@ const CONTENT_URL = "http://localhost:1061";
         });
     }
 
+    function load_js() {
+        const files = ['alert.js', 'api.js'];
+        [].forEach.call(files, f => {
+            let script = document.createElement('script');
+            script.src = 'scripts/' + f;
+            document.body.appendChild(script);
+        });
+    }
+
     load_includes();
-    load_content();
+    load_cdn();
+    load_js();
 })();
 
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>paste</title>
+
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+
+<div class="container flex-col">
+    <h2>many-copy</h2>
+    <div id="inputs" style="width: 100%"></div>
+</div>
+
+
+<script src="scripts/loader.js"></script>
+
+<script>
+    window.onload = async () => {
+        const id = window.location.hash.substring(1);
+
+        let inputs = await Ajax.get('/paste/get', {id: id});
+        const elem = document.querySelector('#inputs');
+        inputs.forEach(input => {
+            const e = document.createElement(input.Type);
+            e.value = input.Data;
+            e.setAttribute('readonly', true);
+            e.onclick = function (e) { console.log(e); copy(e.target); };
+            console.log(e);
+            elem.appendChild(e);
+        });
+    };
+
+    function copy(e) {
+        e.select();
+        e.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        document.execCommand("copy");
+
+        Alert.show(true, 'text copied');
+    }
+
+</script>
+</body>
+</html>

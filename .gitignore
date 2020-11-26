@@ -1,6 +1,9 @@
 # IDE files
 .idea/*
 
+# database
+*.db
+
 # Binaries for programs and plugins
 *.exe
 *.exe~

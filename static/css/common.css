@@ -48,10 +48,40 @@ input:focus, textarea:focus {
     display: inline-block;
     padding: 5px 12px;
     font-size: 20px;
-    border: 1px solid #E1E4E8;
+    border: none;
     border-radius: 6px;
     outline: none;
     background: #FAFBFC;
     text-align: center;
     cursor: pointer;
+}
+
+
+.btn:hover {
+    outline: none;
+    background: #FFF;
+    border: none;
+    box-shadow: 0 0 0 6px rgba(3, 102, 214, 0.3);
+}
+
+.alert {
+    z-index:500;
+    position:absolute;
+    opacity: 0;
+    bottom:60px;
+    left:30px;
+    padding: 10px 20px;
+    transition: all 350ms ease-in-out;
+}
+
+.alert-text {
+    color: #FFF;
+}
+
+.alert-success {
+    background: #1BC5BD;
+}
+
+.alert-danger {
+    background: #F64E60;
 }
