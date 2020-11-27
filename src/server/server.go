@@ -15,11 +15,13 @@ type Server struct {
 func (s *Server) Init() {
 	go func(s *Server) {
 		port := os.Getenv("PORT")
-		fmt.Printf("====================================")
-		fmt.Printf(port)
+
 		if port == "" {
 			port = settings.Get(s.Name + "_port").(string)
+		} else {
+			port = "0.0.0.0:" + port
 		}
+
 		fmt.Printf("starting %v server at %v ...\n", s.Name, port)
 
 		if err := http.ListenAndServe(port, nil); err != nil {
