@@ -2,10 +2,12 @@ package api
 
 import (
 	"fmt"
+	"log"
 	"manycopy/src/server"
 	"manycopy/src/server/api/paste-api"
 	"manycopy/src/settings"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -23,10 +25,16 @@ func init() {
 	//fserver  := http.FileServer(http.Dir(settings.Get("static_path").(string)))
 	//s.AddHandler("/", fserver)
 	s.Init()
+
+	path, err := os.Getwd()
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(path)
 }
 
 func x(w http.ResponseWriter, r *http.Request) {
-	ext := ".html";
+	ext := ".html"
 	if r.URL.Path == "/" {
 		r.URL.Path = "/index"
 	}

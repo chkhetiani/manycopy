@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>paste</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+
 
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/common.css">
@@ -20,7 +24,7 @@
 <script>
     window.onload = async () => {
         const id = window.location.hash.substring(1);
-
+        document.title = id;
         let inputs = await Ajax.get('/paste/get', {id: id});
         const elem = document.querySelector('#inputs');
         inputs.forEach(input => {

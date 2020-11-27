@@ -31,11 +31,15 @@
         const INPUTS = document.querySelector('#inputs');
 
         function addInp() {
-            INPUTS.appendChild(document.createElement('input'));
+            const elem = document.createElement('input')
+            INPUTS.appendChild(elem);
+            elem.focus();
         }
 
         function addText() {
-            INPUTS.appendChild(document.createElement('textarea'));
+            const elem = document.createElement('textarea')
+            INPUTS.appendChild(elem);
+            elem.focus();
         }
 
         async function create() {
