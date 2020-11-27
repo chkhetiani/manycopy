@@ -26,7 +26,7 @@ func init() {
 }
 
 func x(w http.ResponseWriter, r *http.Request) {
-	ext := ".html";
+	ext := ".html"
 	if r.URL.Path == "/" {
 		r.URL.Path = "/index"
 	}
