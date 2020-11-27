@@ -2,6 +2,8 @@ package api
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"manycopy/src/server"
 	"manycopy/src/server/api/paste-api"
 	"manycopy/src/settings"
@@ -23,6 +25,15 @@ func init() {
 	//fserver  := http.FileServer(http.Dir(settings.Get("static_path").(string)))
 	//s.AddHandler("/", fserver)
 	s.Init()
+
+	files, err := ioutil.ReadDir("./")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, f := range files {
+		fmt.Println(f.Name())
+	}
 }
 
 func x(w http.ResponseWriter, r *http.Request) {
