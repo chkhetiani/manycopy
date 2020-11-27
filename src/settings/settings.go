@@ -8,7 +8,7 @@ func init() {
 	data["cdn_port"] = ":1061"
 	data["static_port"] = ":1062"
 	data["content_path"] = "/dev/many-copy/cdn"
-	data["static_path"] = "/dev/many-copy/static"
+	data["static_path"] = "/app/static"
 }
 
 func Get(key string) interface{} {
