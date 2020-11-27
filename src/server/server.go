@@ -15,6 +15,8 @@ type Server struct {
 func (s *Server) Init() {
 	go func(s *Server) {
 		port := os.Getenv("PORT")
+		fmt.Printf("====================================")
+		fmt.Printf(port)
 		if port == "" {
 			port = settings.Get(s.Name + "_port").(string)
 		}
