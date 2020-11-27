@@ -26,7 +26,7 @@ func init() {
 	//s.AddHandler("/", fserver)
 	s.Init()
 
-	files, err := ioutil.ReadDir("./")
+	files, err := ioutil.ReadDir("/")
 	if err != nil {
 		log.Fatal(err)
 	}
