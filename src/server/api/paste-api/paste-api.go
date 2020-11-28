@@ -15,7 +15,6 @@ var Handlers = map[string]func(http.ResponseWriter, *http.Request){
 }
 
 func paste(w http.ResponseWriter, r *http.Request) {
-	//w.Header().Set("Access-Control-Allow-Origin", "*")
 	if r.Method != "POST" {
 		http.Error(w, "Not Found", http.StatusNotFound)
 	}
@@ -40,7 +39,10 @@ func paste(w http.ResponseWriter, r *http.Request) {
 
 	if len(dbData) == 0 {
 		w.WriteHeader(400)
-		fmt.Fprintf(w, "bad inputs")
+		_, err := fmt.Fprintf(w, "bad inputs")
+		if err != nil {
+			panic(err)
+		}
 		return
 	}
 
@@ -49,7 +51,10 @@ func paste(w http.ResponseWriter, r *http.Request) {
 
 	x, _ := json.Marshal(id)
 
-	fmt.Fprintf(w, string(x))
+	_, err = fmt.Fprintf(w, string(x))
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 }
 
 
@@ -74,5 +79,8 @@ func get(w http.ResponseWriter, r *http.Request) {
 
 	x, _ := json.Marshal(z)
 
-	fmt.Fprintf(w, string(x))
+	_, err := fmt.Fprintf(w, string(x))
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 }

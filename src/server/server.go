@@ -14,17 +14,9 @@ type Server struct {
 
 func (s *Server) Init() {
 	go func(s *Server) {
-		port := os.Getenv("PORT")
-
-		if port == "" {
-			port = settings.Get(s.Name + "_port").(string)
-		} else {
-			port = "0.0.0.0:" + port
-		}
-
-		fmt.Printf("starting %v server at %v ...\n", s.Name, port)
-
-		if err := http.ListenAndServe(port, nil); err != nil {
+		hostname := getHostName(s)
+		fmt.Printf("starting at %v", hostname)
+		if err := http.ListenAndServe(hostname, nil); err != nil {
 			log.Fatal(err)
 		}
 	}(s)
@@ -34,7 +26,14 @@ func (s *Server) AddHandlerFunc(path string, f func(http.ResponseWriter, *http.R
 	http.HandleFunc(path, f)
 }
 
-
 func (s *Server) AddHandler(path string, h http.Handler) {
 	http.Handle(path, h)
+}
+
+func getHostName(s *Server) string {
+	port := os.Getenv("PORT")
+	if len(port) == 0 {
+		port = settings.Get(s.Name + "_port").(string)
+	}
+	return "0.0.0.0" + port
 }
