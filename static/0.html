@@ -19,6 +19,10 @@
 </div>
 
 
+<footer class="container flex-col" style="user-select: none">
+    <div>Icons made by <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+</footer>
+
 <script src="scripts/loader.js"></script>
 
 <script>
@@ -28,14 +32,22 @@
         let inputs = await Ajax.get('/paste/get', {id: id});
         const elem = document.querySelector('#inputs');
         inputs.forEach(input => {
+            const div = document.createElement('div');
             const e = document.createElement(input.Type);
             e.value = input.Data;
             e.setAttribute('readonly', true);
-            e.onclick = function (e) { copy(e.target); };
-            elem.appendChild(e);
+            const rub = document.createElement('img');
+            div.classList.add('input-container');
+            rub.classList.add('rubbish');
+            rub.src = '/img/copy.svg';
+            rub.onclick = function () { copy(e);  }
+
+            div.appendChild(e);
+            div.appendChild(rub);
+            elem.appendChild(div);
         });
 
-        for (let inp of elem.children) {
+        for (let inp of elem.querySelectorAll('textarea')) {
             inp.style.height = inp.scrollHeight + 4 + 'px';
         }
     };
@@ -47,6 +59,9 @@
         document.execCommand("copy");
 
         Alert.show(true, 'text copied');
+        e.setAttribute('selectionStart', 0);
+        e.setAttribute('selectionEnd', 0);
+        e.blur();
     }
 
 </script>
