@@ -89,7 +89,7 @@ input:focus, textarea:focus {
 
 .alert {
     z-index:500;
-    position:absolute;
+    position: fixed;
     opacity: 0;
     bottom:60px;
     left:30px;
