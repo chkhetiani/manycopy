@@ -22,6 +22,28 @@ input, textarea {
     resize: vertical;
 }
 
+#inputs input,
+#inputs textarea {
+    width: calc(100% - 55px);
+}
+
+.rubbish {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease-out;
+}
+
+.rubbish:hover {
+    transform: scale(1.1);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
 input:focus, textarea:focus {
     outline: none;
     background: #FFF;
@@ -57,7 +79,8 @@ input:focus, textarea:focus {
 }
 
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
     outline: none;
     background: #FFF;
     border: none;

@@ -31,8 +31,7 @@
             const e = document.createElement(input.Type);
             e.value = input.Data;
             e.setAttribute('readonly', true);
-            e.onclick = function (e) { console.log(e); copy(e.target); };
-            console.log(e);
+            e.onclick = function (e) { copy(e.target); };
             elem.appendChild(e);
         });
     };
