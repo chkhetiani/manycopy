@@ -34,6 +34,10 @@
             e.onclick = function (e) { copy(e.target); };
             elem.appendChild(e);
         });
+
+        for (let inp of elem.children) {
+            inp.style.height = inp.scrollHeight + 4 + 'px';
+        }
     };
 
     function copy(e) {
