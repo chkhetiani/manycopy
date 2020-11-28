@@ -14,43 +14,56 @@
 
     <div class="container flex-col">
 
-        <h2>many-copy</h2>
-        <div id="inputs" style="width: 100%">
-            <input autofocus type="text">
-        </div>
+        <h2 style="user-select: none">many-copy</h2>
+        <div id="inputs" style="width: 100%"></div>
         <div>
-            <button class="btn" onclick="addInp()" style="background: #0366D6;color:white;">+text</button>
-            <button class="btn" onclick="addText()" style="background: #0366D6;color:white;">+area</button>
+            <button class="btn" onclick="addInp(true)" style="background: #0366D6;color:white;">+text</button>
+            <button class="btn" onclick="addInp(false)" style="background: #0366D6;color:white;">+area</button>
             <button class="btn" onclick="create()" style="background: #2EA44F;color:white;">+create</button>
         </div>
     </div>
+
+    <footer class="container flex-col" style="user-select: none">
+        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </footer>
 
     <script src="scripts/loader.js"></script>
 
     <script>
         const INPUTS = document.querySelector('#inputs');
 
-        function addInp() {
-            const elem = document.createElement('input')
-            INPUTS.appendChild(elem);
+        function addInp(isInput) {
+            const div = document.createElement('div');
+            const elem = document.createElement(isInput ? 'input' : 'textarea');
+            const rub = document.createElement('img');
+            div.classList.add('input-container');
+            rub.classList.add('rubbish');
+            rub.src = '/img/rub.svg';
+            rub.onclick = function () { del(div); }
+
+            div.appendChild(elem);
+            div.appendChild(rub);
+            INPUTS.appendChild(div);
             elem.focus();
         }
 
-        function addText() {
-            const elem = document.createElement('textarea')
-            INPUTS.appendChild(elem);
-            elem.focus();
+        function del(e) {
+            e.remove();
         }
 
         async function create() {
-            const x = INPUTS.children;
+            const x = INPUTS.querySelectorAll('input, textarea');
             let a = [];
             for (let i = 0; i < x.length; i++) {
                 a.push({Data: x[i].value, Type: x[i].nodeName});
             }
             let res = await Ajax.post('/paste/new', JSON.stringify(a));
-            location.href = '/0#' + res;
+            if (res.length === 6) {
+                location.href = '/0#' + res;
+            }
         }
+
+        addInp(true);
     </script>
 </body>
 </html>

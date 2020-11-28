@@ -30,7 +30,22 @@ func paste(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	id := db.InsertPaste(data)
+
+	var dbData []db.Input
+	for _, inp := range data {
+		if (inp.Type == "INPUT" || inp.Type == "TEXTAREA") && inp.Data != "" {
+			dbData = append(dbData, inp)
+		}
+	}
+
+	if len(dbData) == 0 {
+		w.WriteHeader(400)
+		fmt.Fprintf(w, "bad inputs")
+		return
+	}
+
+
+	id := db.InsertPaste(dbData)
 
 	x, _ := json.Marshal(id)
 

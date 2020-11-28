@@ -33,7 +33,7 @@ const CONTENT_URL = "http://localhost:1061";
     }
 
     load_includes();
-    load_cdn();
+    //load_cdn();
     load_js();
 })();
 
