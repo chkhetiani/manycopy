@@ -1,9 +1,8 @@
 package main
 
 import (
-	_ "manycopy/src/server/api"
+	_ "github.com/chkhetiani/manycopy/src/server/api"
 )
-
 
 func main() {
 	select {}

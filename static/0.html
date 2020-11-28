@@ -28,7 +28,7 @@
 <script>
     window.onload = async () => {
         const id = window.location.hash.substring(1);
-        document.title = id;
+        document.title = 'many-copy - #' + id;
         let inputs = await Ajax.get('/paste/get', {id: id});
         const elem = document.querySelector('#inputs');
         inputs.forEach(input => {

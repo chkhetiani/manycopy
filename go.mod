@@ -1,3 +1,5 @@
-module manycopy
+module github.com/chkhetiani/manycopy
 
-require github.com/mattn/go-sqlite3 v2.0.3+incompatible
+go 1.15
+
+require github.com/mattn/go-sqlite3 v1.14.5
