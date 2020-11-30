@@ -5,7 +5,7 @@ import "os"
 var data = make(map[string]interface{})
 
 func init() {
-	data["api_port"] = ":1060"
+	data["api_port"] = "1060"
 	data["static_path"] = (map[bool]string{true: "/dev/go/many-copy/static", false: "/app/static"})[os.Getenv("PORT") == ""]
 }
 

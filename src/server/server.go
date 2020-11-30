@@ -36,5 +36,5 @@ func getHostName(s *Server) string {
 	if len(port) == 0 {
 		port = settings.Get(s.Name + "_port").(string)
 	}
-	return "0.0.0.0" + port
+	return "0.0.0.0:" + port
 }

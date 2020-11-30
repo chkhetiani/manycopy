@@ -45,6 +45,6 @@ func fileServerHandler(w http.ResponseWriter, r *http.Request) {
 
 	requestedPath := strings.TrimLeft(filepath.Clean(r.URL.Path), "/")
 	filename := fmt.Sprintf("%s/%s"+ext, http.Dir(settings.Get("static_path").(string)), requestedPath)
-	fmt.Println(filename)
+	fmt.Println(r.RemoteAddr + ": " + filename)
 	http.ServeFile(w, r, filename)
 }
