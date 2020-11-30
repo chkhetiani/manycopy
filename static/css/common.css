@@ -22,6 +22,11 @@ input, textarea {
     resize: vertical;
 }
 
+footer {
+    user-select: none;
+    font-size:10px;
+}
+
 #inputs input,
 #inputs textarea {
     width: calc(100% - 55px);
@@ -66,6 +71,10 @@ input:focus, textarea:focus {
     max-width: min(900px, 90%);
 }
 
+.actions {
+    width: 100%;
+}
+
 .btn {
     display: inline-block;
     padding: 5px 12px;
@@ -73,19 +82,30 @@ input:focus, textarea:focus {
     border: none;
     border-radius: 6px;
     outline: none;
-    background: #FAFBFC;
+    background: #007BFF;
+    color:white;
     text-align: center;
     cursor: pointer;
 }
 
+.btn-dark {
+    background: #343A40;
+}
 
 .btn:hover,
 .btn:focus {
     outline: none;
-    background: #FFF;
     border: none;
-    box-shadow: 0 0 0 6px rgba(3, 102, 214, 0.3);
+    box-shadow: 0 0 0 6px rgba(0, 123, 255, 0.3);
 }
+
+.btn-dark:hover,
+.btn-dark:focus {
+    outline: none;
+    border: none;
+    box-shadow: 0 0 0 6px rgba(52, 58, 64, 0.3);
+}
+
 
 .alert {
     z-index:500;
@@ -102,9 +122,19 @@ input:focus, textarea:focus {
 }
 
 .alert-success {
-    background: #1BC5BD;
+    background: #343A40;
 }
 
 .alert-danger {
     background: #F64E60;
+}
+
+@media only screen and (max-width: 700px) {
+    .actions {
+        width: initial;
+    }
+
+    .btn {
+        font-size: 25px;
+    }
 }

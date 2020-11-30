@@ -15,11 +15,12 @@
 
 <div class="container flex-col">
     <h2>many-copy</h2>
+    <a class="btn btn-dark" onclick="copyURL()">copy URL</a>
     <div id="inputs" style="width: 100%"></div>
 </div>
 
 
-<footer class="container flex-col" style="user-select: none">
+<footer class="container flex-col">
     <div>Icons made by <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 </footer>
 
@@ -54,15 +55,26 @@
 
     function copy(e) {
         e.select();
-        e.setSelectionRange(0, 99999); /*For mobile devices*/
+        e.setSelectionRange(0, 99999);
 
         document.execCommand("copy");
 
-        Alert.show(true, 'text copied');
+        Alert.show(true, 'The text has been copied.');
         e.setAttribute('selectionStart', 0);
         e.setAttribute('selectionEnd', 0);
         e.blur();
     }
+
+    function copyURL() {
+        var el = document.createElement('textarea');
+        el.value = location.href;
+        document.body.appendChild(el);
+        el.select();
+        el.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        el.remove();
+        Alert.show(true, 'The URL has been copied.');
+    };
 
 </script>
 </body>

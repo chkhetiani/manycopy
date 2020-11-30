@@ -1,7 +1,7 @@
-const CONTENT_URL = "http://localhost:1061";
 
 
 (() => {
+    const CONTENT_URL = "http://localhost:1061";
     function load_includes(){
         const includes = document.getElementsByTagName('include');
         [].forEach.call(includes, i => {
@@ -31,11 +31,15 @@ const CONTENT_URL = "http://localhost:1061";
             document.body.appendChild(script);
         });
     }
-
-    load_includes();
-    //load_cdn();
-    load_js();
+    if (!window.contentloaded){
+        load_includes();
+        //load_cdn();
+        load_js();
+        window.contentloaded = true;
+    }
 })();
+
+
 
 
 
